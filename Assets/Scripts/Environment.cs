@@ -6,22 +6,22 @@ using UnityEngine.UI;
 public class Environment : MonoBehaviour
 {
     public IntVector3 dimension = new IntVector3(10, 3, 10);
+    public float maxUpdateFrequency = 0.1f;
+    public float dissipationRate = 1000f;
+    public float precision = 0.0001f;
+    public bool Halted = false;
 
+    [Header("UI Prefabs")]
     public Transform tilePrefab;
     public Text CurrentTileText;
     public Text DebugText;
+
+    [HideInInspector]
     public IntVector3 selected;
-    public float precision = 0.0001f;
-    public float maxUpdateFrequency = 0.1f;
     private float lastUpdated = 0f;
-
-    public bool Halted = false;
-
     private Tile[,,] tiles;
-
     private int dimensionLength;
 
-    public float dissipationRate = 1000f;
 
     [System.Serializable]
     public struct IntVector3
@@ -61,9 +61,6 @@ public class Environment : MonoBehaviour
     private void Awake()
     {
         Transform thisTransform = this.transform;
-        dimension.x = Math.Max(dimension.x, 2);
-        dimension.y = Math.Max(dimension.y, 2);
-        dimension.z = Math.Max(dimension.z, 2);
         tiles = new Tile[dimension.x, dimension.y, dimension.z];
         for (int x = 0; x < dimension.x; x++)
         {
@@ -78,6 +75,15 @@ public class Environment : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnValidate()
+    {
+        dimension.x = Mathf.Max(dimension.x, 2);
+        dimension.y = Mathf.Max(dimension.y, 2);
+        dimension.z = Mathf.Max(dimension.z, 2);
+        maxUpdateFrequency = Mathf.Max(maxUpdateFrequency, 0f);
+        precision = Mathf.Max(precision, Mathf.Epsilon);
     }
 
     private void Update()

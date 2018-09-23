@@ -297,9 +297,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dimension:
-    x: 20
+    x: 5
     y: 2
-    z: 20
+    z: 5
+  maxUpdateFrequency: 0.5
+  dissipationRate: 1000
+  precision: 0.000001
+  Halted: 0
   tilePrefab: {fileID: 4263467163745002, guid: 7226f7a04dc9c4f409b65324bb6a2b35, type: 2}
   CurrentTileText: {fileID: 95153052}
   DebugText: {fileID: 1569104983}
@@ -307,10 +311,6 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
-  precision: 0.000001
-  maxUpdateFrequency: 0.5
-  Halted: 0
-  dissipationRate: 1000
 --- !u!4 &389448611
 Transform:
   m_ObjectHideFlags: 0
