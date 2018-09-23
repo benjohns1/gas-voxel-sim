@@ -8,3 +8,4 @@ Hovering the mouse over a particular voxel shows debug details about the gas con
 
 The Environment scene object has various settings that affect the size and behavior of the simulation
 
+![screenshot](https://raw.githubusercontent.com/benjohns1/gas-voxel-sim/master/docs/images/pic1.png)
